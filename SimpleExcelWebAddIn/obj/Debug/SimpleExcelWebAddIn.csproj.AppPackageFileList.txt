@@ -1,0 +1,2 @@
+bin\Debug\app.publish\OfficeAppManifests\SimpleExcelWebAddInManifest.xml
+C:\Users\lnztha01\source\repos\SimpleExcelWebAddIn\SimpleExcelWebAddIn\bin\Debug\app.publish\SimpleExcelWebAddIn.app
