@@ -5,7 +5,7 @@ export function loadJSONFile(file, callback) {
     rawFile.open("GET", file, true);
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4 && rawFile.status == 200) {
-            callback(rawFile);
+            callback(rawFile.responseText);
         }
     }
     rawFile.send(null);

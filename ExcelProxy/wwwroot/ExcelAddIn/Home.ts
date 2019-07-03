@@ -96,15 +96,23 @@ import * as FileHandler from "./FileHandler";
         })
     }
 
-    async function initializeExcelData(rawFile: XMLHttpRequest) {
-        set_configuration(rawFile.responseText);
+    async function initializeExcelData(config: XMLHttpRequest) {
+        set_configuration(config);
         await setExcelHeaders();
+    }
+
+    // this is kind of a pattern for handling contents in the excel sheet
+    async function excelHandler(handler) {
+        try {
+            await Excel.run(handler);
+        } catch (error) {
+            errorHandler(error);
+        }
     }
 
     async function setExcelHeaders() {
         // Run a batch operation against the Excel object model
-        try {
-            await Excel.run(async ctx => {
+		await excelHandler(async ctx => {
                 // Create a proxy object for the active sheet
                 let sheet = ctx.workbook.worksheets.getActiveWorksheet();
                 let searchRange = sheet.getRange(startSearchColName + startHeaders + ":" + endSearchColName + startHeaders);
@@ -123,10 +131,6 @@ import * as FileHandler from "./FileHandler";
                 componentRange.format.autofitColumns();
                 await ctx.sync();
             });
-
-        } catch (error) {
-            errorHandler(error);
-        }
     }
 
     function empty(data) {
@@ -184,14 +188,6 @@ import * as FileHandler from "./FileHandler";
         return filterValues;
     }
 
-    // this is kind of a pattern for handling contents in the excel sheet
-    async function excelHandler(handler) {
-        try {
-            await Excel.run(handler);
-        } catch (error) {
-            errorHandler(error);
-        }
-    }
 
     async function loadComponents() {
         // Run a batch operation against the Excel object model
