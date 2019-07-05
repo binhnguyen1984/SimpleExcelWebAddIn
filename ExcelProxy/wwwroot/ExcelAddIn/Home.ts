@@ -28,7 +28,7 @@ import * as FileHandler from "./FileHandler";
     Office.initialize = function (reason) {
         $(document).ready(async function () {
             FileHandler.loadJSONFile("./config.json", initializeExcelData);
-            await FileHandler.loadExcelFile("./config.xlsx", () => { });
+            //await FileHandler.loadExcelFile("./config.xlsx", () => { });
 
             // Initialize the FabricUI notification mechanism and hide it
             let element = document.querySelector('.ms-MessageBanner');
@@ -102,7 +102,7 @@ import * as FileHandler from "./FileHandler";
         await setExcelHeaders();
     }
 
-    // this is kind of a pattern for handling contents in the excel sheet
+    // this is kind of a pattern for handling contents in the current excel sheet
     async function excelHandler(handler) {
         try {
             await Excel.run(handler);

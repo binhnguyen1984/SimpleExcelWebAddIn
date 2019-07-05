@@ -12,10 +12,13 @@
       "es5",
       "es2015.promise"
     ],
-
+    "types": [
+      "office-js",
+      "jquery"
+    ],
     "allowJs": true,
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs", //commonjs
     "moduleResolution": "node",
     "sourceMap": true
   },
