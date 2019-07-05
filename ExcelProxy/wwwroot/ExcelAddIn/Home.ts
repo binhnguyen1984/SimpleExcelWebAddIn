@@ -26,8 +26,9 @@ import * as FileHandler from "./FileHandler";
 
     // The initialize function must be run each time a new page is loaded.
     Office.initialize = function (reason) {
-        $(document).ready(function () {
-            FileHandler.loadJSONFile("../config.json", initializeExcelData);
+        $(document).ready(async function () {
+            FileHandler.loadJSONFile("./config.json", initializeExcelData);
+            await FileHandler.loadExcelFile("./config.xlsx", () => { });
 
             // Initialize the FabricUI notification mechanism and hide it
             let element = document.querySelector('.ms-MessageBanner');
@@ -96,7 +97,7 @@ import * as FileHandler from "./FileHandler";
         })
     }
 
-    async function initializeExcelData(config: XMLHttpRequest) {
+    async function initializeExcelData(config: string) {
         set_configuration(config);
         await setExcelHeaders();
     }
