@@ -14,12 +14,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\ExcelAddIn\Common.ts" />
+    <Content Remove="wwwroot\ExcelAddIn\ComponentsHandler.ts" />
     <Content Remove="wwwroot\ExcelAddIn\Home.ts" />
     <Content Remove="wwwroot\ExcelAddIn\Scripts\ExcelHandler.ts" />
     <Content Remove="wwwroot\ExcelAddIn\Scripts\jQuery.d.ts" />
     <Content Remove="wwwroot\ExcelAddIn\Scripts\Office.d.ts" />
     <Content Remove="wwwroot\ExcelAddIn\Web.Debug.config" />
     <Content Remove="wwwroot\ExcelAddIn\Web.Release.config" />
+    <Content Remove="wwwroot\GlobalConfig.ts" />
   </ItemGroup>
 
   <ItemGroup>

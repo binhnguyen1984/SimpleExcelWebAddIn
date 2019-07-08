@@ -13,6 +13,7 @@
     "end_update_col": 5
   },
   "Database": {
-    "requestURL": "/api/hdb/components"
+    "hdbURL": "/api/hdb/components",
+    "cdpURL": "/api/cdp/projects"
   }
 }

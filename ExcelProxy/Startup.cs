@@ -61,6 +61,14 @@ namespace ExcelProxy
                     .AddXForwardedHeaders()
                     .Send());
             });
+
+            app.Map("/api/cdp", app2 =>
+            {
+                app2.RunProxy(ctx => ctx
+                    .ForwardTo("https://volta-dev.andritz.com/api/")
+                    .AddXForwardedHeaders()
+                    .Send());
+            });
         }
     }
 }

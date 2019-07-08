@@ -7,7 +7,8 @@
     const bundleFolder = "wwwroot/ExcelAddIn/bundle/";
     module.exports = {
         //externals: {
-        //    fs: "require('fs')",
+        //    fs: "commonjs fs",
+        //    path: "commonjs path"
         //},
         entry: "./wwwroot/ExcelAddIn/Home",
         output: {
