@@ -5,11 +5,6 @@
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Update="wwwroot\GlobalConfig.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Update="wwwroot\ExcelAddIn\Home.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

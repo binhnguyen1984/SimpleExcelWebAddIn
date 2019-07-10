@@ -1,11 +1,16 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using ProxyKit;
 using System.Net.Http;
+using Microsoft.AspNetCore.HttpOverrides;
+
 namespace ExcelProxy
 {
     public class Startup
@@ -27,12 +32,12 @@ namespace ExcelProxy
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddProxy(httpClientBuilder =>
-                httpClientBuilder.ConfigurePrimaryHttpMessageHandler(() =>
-                    new HttpClientHandler { ServerCertificateCustomValidationCallback = (_, __, ___, ____) => true }
-                ));
+                httpClientBuilder.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { ServerCertificateCustomValidationCallback = (_, __, ___, ____) => true, UseDefaultCredentials = true }));
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,8 +55,8 @@ namespace ExcelProxy
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            //app.UseAuthentication();
             app.UseCookiePolicy();
-
             app.UseMvc();
 
             app.Map("/api/hdb", app1 =>
