@@ -7,7 +7,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "ts-loader": "^6.0.4",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "webpack-script": "webpack"
